@@ -49,6 +49,17 @@ const TarefasToolbar = props => {
       descricao: descricao,
       categoria: categoria
     }
+  
+    if (descricao == "") {
+      props.informarDescricao();
+      return false;
+    }
+    
+    if (categoria == "") {
+      props.informarCategoria();
+      return false;
+    }
+
     props.salvar(tarefa)
     setDescricao('')
     setCategoria('')

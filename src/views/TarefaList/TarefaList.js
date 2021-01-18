@@ -7,7 +7,9 @@ import {
   listar,
   salvar ,
   deletar,
-  alterarStatus
+  alterarStatus,
+  informarDescricao,
+  informarCategoria
 } from '../../store/tarefasReducer'
 
 import {
@@ -41,7 +43,8 @@ const TarefaList = (props) => {
 
   return (
     <div className={classes.root}>
-      <TarefasToolbar salvar={props.salvar} />
+      <TarefasToolbar salvar={props.salvar} informarDescricao={props.informarDescricao}
+        informarCategoria={props.informarCategoria}/>
       <div className={classes.content}>
         <TarefasTable alterarStatus={props.alterarStatus} 
                       deleteAction={props.deletar}
@@ -72,6 +75,8 @@ const mapDispatchToProps = dispatch =>
     salvar, 
     deletar, 
     alterarStatus,
+    informarDescricao,
+    informarCategoria,
     esconderMensagem
   }, dispatch)
 

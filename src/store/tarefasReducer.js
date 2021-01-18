@@ -3,13 +3,15 @@ import { mostrarMensagem } from './mensagensReducer'
 
 const http = axios.create({
     baseURL : 'https://hvogel-tarefas-api.herokuapp.com/'
+    //baseURL: 'http://localhost:8080/'
 })
 
 const ACTIONS = {
     LISTAR: 'TAREFAS_LISTAR',
     ADD: 'TAREFAS_ADD',
     REMOVER: 'TAREFAS_REMOVE',
-    UPDATE_STATUS: 'TAREFAS_UPDATE_STATUS'
+    UPDATE_STATUS: 'TAREFAS_UPDATE_STATUS',
+    INFORMAR_DESCRICAO: 'INFORMAR_DESCRICAO'
 }
 
 const ESTADO_INICIAL = {
@@ -101,4 +103,31 @@ export function alterarStatus( id ){
         })
     }
 
+}
+
+export function informarDescricao() {
+  return dispatch => {
+    http.get('/tarefas', {
+        headers: {'x-tenant-id' : localStorage.getItem('email_usuario_logado')}
+    }).then( response => {
+        dispatch([{
+            type: ACTIONS.LISTAR,
+            tarefas: response.data
+        }, mostrarMensagem('Favor preencher campo Descrição!')])
+    })
+  } 
+}
+
+
+export function informarCategoria() {
+  return dispatch => {
+    http.get('/tarefas', {
+        headers: {'x-tenant-id' : localStorage.getItem('email_usuario_logado')}
+    }).then( response => {
+        dispatch([{
+            type: ACTIONS.LISTAR,
+            tarefas: response.data
+        }, mostrarMensagem('Favor preencher campo Categoria!')])
+    })
+  } 
 }
