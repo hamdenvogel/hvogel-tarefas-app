@@ -2,7 +2,7 @@ import axios from 'axios'
 import { mostrarMensagem } from './mensagensReducer'
 
 const http = axios.create({
-    baseURL : process.env.REACT_APP_API_BASEURL
+    baseURL : 'https://hvogel-tarefas-api.herokuapp.com/'
 })
 
 const ACTIONS = {
